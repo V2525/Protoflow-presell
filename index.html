@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protoflow Cookies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('https://audifortsaude.wordpress.com/wp-content/uploads/2026/03/screenshot_2026-03-16-20-21-52-734_com.android.chrome-edit2-1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            z-index: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .bg-image {
+                background-image: url('https://audifortsaude.wordpress.com/wp-content/uploads/2026/03/screenshot_2026-03-16-20-21-52-734_com.android.chrome-edit2-1.jpg');
+            }
+        }
+        
+        .cookie-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.30);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .cookie-modal {
+            background: white;
+            border-radius: 20px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            overflow: hidden;
+            animation: slideUp 0.5s ease;
+        }
+        
+        .cookie-header {
+            padding: 32px;
+            text-align: center;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .cookie-header h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 12px;
+        }
+        
+        .cookie-body {
+            padding: 32px;
+        }
+        
+        .cookie-body p {
+            color: #475569;
+            line-height: 1.7;
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+        
+        .cookie-buttons {
+            display: grid;
+            gap: 12px;
+        }
+        
+        .cookie-btn {
+            padding: 16px 24px;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            text-align: center;
+            width: 100%;
+            font-family: inherit;
+        }
+        
+        .btn-aceitar {
+            background: #0056c7;
+            color: #ffffff;
+            box-shadow: 0 4px 12px #0056c740;
+        }
+        
+        .btn-aceitar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px #0056c760;
+        }
+        
+        .btn-recusar {
+            background: #616161;
+            color: #ffffff;
+            box-shadow: 0 4px 12px #61616140;
+        }
+        
+        .btn-recusar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px #61616160;
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: rgba(0,0,0,0.1);
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            color: #64748b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: rgba(0,0,0,0.2);
+        }
+        
+        .hidden-content {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            .cookie-modal {
+                border-radius: 16px;
+            }
+            
+            .cookie-header {
+                padding: 24px 20px;
+            }
+            
+            .cookie-header h2 {
+                font-size: 1.5rem;
+            }
+            
+            .cookie-body {
+                padding: 24px 20px;
+            }
+            
+            .cookie-buttons {
+                gap: 10px;
+            }
+            
+            .cookie-btn {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-image"></div>
+    
+    <div class="hidden-content">
+        <h1>ProtoFlow - Suplemento Natural para Saúde Masculina | Site Oficial</h1>
+        <div>ProtoFlow é uma fórmula para suporte à saúde masculina, desenvolvida para oferecer suporte completo às funções normais da próstata, bexiga e sistema reprodutivo.
+
+#### BENEFÍCIOS PRINCIPAIS
+- Suporta as funções normais da próstata, bexiga e sistema reprodutivo
+- Fórmula pura, limpa e eficaz – 100% livre de revestimentos químicos e aditivos desnecessários
+- Não contém ingredientes genéticamente modificados (Non-GMO), é vegana e sem glúten
+
+#### INGREDIENTES NATURAIS
+A fórmula é composta por:
+- Ginseng Chinês
+- Pimenta Caiena
+- Damiana
+- Palmeira Sabal (Saw Palmetto)
+- Muira Puama
+- Epimedium Sagittatum
+- Bagas de Azedinha (Hawthorn Berries)
+- Catuaba
+
+Todos os ingredientes são manuseados conforme o Programa Nacional Orgânico USDA, em instalações registradas e inspecionadas pela FDA.
+
+#### OFERTAS E GARANTIA
+- Ao adquirir 3 ou 6 frascos, você recebe 4 eBooks gratuitos:
+  1. Supercharge Your Body (RRP$97)
+  2. Biohacking Secrets (RRP$97)
+  3. 10 Ways To Turbocharge Your Testosterone (RRP$97)
+  4. 1-Day Detox Guide (RRP$97)
+- Opções de pacote:
+  - Pacote Básico: 2 frascos por $79 cada, total $158 + taxa de envio
+  - Pacote Popular: 3 frascos por $59 cada, total $177 + envio grátis nos EUA
+  - Pacote Desconto Máximo: 6 frascos por $49 cada, total $294 + envio grátis nos EUA
+- Garantia de satisfação de 60 dias – reembolso integral se não satisfeito, seguindo os termos do site oficial.
+
+#### AVISO IMPORTANTE
+As informações fornecidas não substituem a consulta com um profissional de saúde qualificado. Informe seu médico sobre quaisquer mudanças em seu estilo de vida ou suplementação. As declarações não foram avaliadas pela Food and Drug Administration. O produto não se destina a diagnosticar, tratar, curar ou prevenir qualquer doença. Se estiver grávida, amamentando, tomando medicamentos ou tiver condições médicas, consulte seu médico antes de usar. Resultados podem variar de pessoa para pessoa.</div>
+    </div>
+    
+    <div class="cookie-overlay" id="cookieOverlay">
+        <div class="cookie-modal">
+            <button class="close-btn" onclick="aceitarCookies()" aria-label="Fechar">✕</button>
+            
+            <div class="cookie-header">
+                <h2>🍪Cookies</h2>
+            </div>
+            
+            <div class="cookie-body">
+                <p>This site uses cookies to improve your navigation experience.</p>
+                
+                <div class="cookie-buttons">
+                    <button class="cookie-btn btn-aceitar" onclick="aceitarCookies()">
+                        Accept Cookies
+                    </button>
+                    <button class="cookie-btn btn-recusar" onclick="aceitarCookies()">
+                        Decline Cookies
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function aceitarCookies() {
+            window.location.replace('https://56e861wef5krgs1n4g8bnavl0u.hop.clickbank.net/?&traffic_source=google&traffic_type=search&campaign=Protoflow-clickbank&creative=ProtoFlow-FPFF&ad=ProtoFlow_Official_Site_Order_Buy&extclid=buy_protoflow');
+        }
+        
+        document.getElementById('cookieOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                aceitarCookies();
+            }
+        });
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                aceitarCookies();
+            }
+        });
+    </script>
+</body>
+</html>
